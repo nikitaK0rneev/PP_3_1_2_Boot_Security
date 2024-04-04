@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/update}" th:object="${user}">
+    <input type="hidden" th:field="*{id}"/>
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="age">Enter age: </label>
+    <input type="number" th:field="*{age}" id="age"/>
+    <br/>
+    <input type="submit" value="Edit"/>
+</form>
+<form th:action="@{/logout}" method="get">
+    <input type="submit" value="Log out"/>
+</form>
+</body>
+</html>

@@ -4,7 +4,10 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+<h1>Welcome to Index PAGE!  </h1>
+<form th:action="@{/logout}" method="get">
+    <input type="submit" value="Log out"/>
+</form>
 
 
 </body>

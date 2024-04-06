@@ -19,8 +19,8 @@ public interface UserService {
 
     User find(int id);
 
-    @Transactional(readOnly = true)
-    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+//    @Transactional(readOnly = true)
+//    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
     User getUserByName(String username);
 }

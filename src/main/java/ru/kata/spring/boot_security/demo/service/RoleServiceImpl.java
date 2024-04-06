@@ -26,4 +26,9 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
+
+    @Transactional
+    public void save(Role role) {
+        roleRepository.save(role);
+    }
 }

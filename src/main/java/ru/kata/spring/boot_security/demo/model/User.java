@@ -1,19 +1,13 @@
 package ru.kata.spring.boot_security.demo.model;
 
-//import jakarta.persistence.*;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User  {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,7 +17,7 @@ public class User  {
     private int age;
     @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -35,17 +29,19 @@ public class User  {
 
     }
 
+    public User(String name, int age, String password) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+    }
+
     public User(int id, String name, int age, String password) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.password = password;
     }
-    public User(String name, int age, String password) {
-        this.name = name;
-        this.age = age;
-        this.password = password;
-    }
+
     public User(String name, int age, String password, Set<Role> roles) {
         this.name = name;
         this.age = age;
@@ -53,12 +49,13 @@ public class User  {
         this.roles = roles;
     }
 
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return roles;
-//    }
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUsername() {
@@ -73,12 +70,12 @@ public class User  {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
@@ -89,6 +86,13 @@ public class User  {
         this.age = age;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public String toString() {
@@ -110,17 +114,5 @@ public class User  {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getAge());
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

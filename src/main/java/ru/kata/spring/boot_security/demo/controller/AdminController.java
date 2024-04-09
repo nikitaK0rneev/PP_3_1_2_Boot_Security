@@ -11,7 +11,6 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -60,6 +59,7 @@ public class AdminController {
     public String showEditUserForm(@RequestParam("id") int id, ModelMap model) {
         User user = userService.find(id);
         model.addAttribute("user", user);
+        model.addAttribute("allRoles", roleService.findAll());
         return "/edit";
     }
 

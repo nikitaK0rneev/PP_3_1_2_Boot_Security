@@ -14,6 +14,14 @@
     <label for="age">Enter age: </label>
     <input type="number" th:field="*{age}" id="age"/>
     <br/>
+    <label>Roles:</label>
+    <div th:each="role : ${allRoles}">
+        <label>
+            <input type="checkbox" th:value="${role.id}" th:field="*{roles}" />
+        </label>
+        <span th:text="${role.name}">Role Name</span>
+    </div>
+    <br>
     <input type="submit" value="Edit"/>
 </form>
 <form th:action="@{/logout}" method="get">

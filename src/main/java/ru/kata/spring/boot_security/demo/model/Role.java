@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -17,12 +15,11 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
-//    @Override
-//    public String getAuthority() {
-//        return name;
-//    }
-
     public Role() {
+    }
+
+    public Role(String name) {
+        this.name = name;
     }
 
     public Role(int id, String name) {
@@ -30,9 +27,6 @@ public class Role {
         this.name = name;
     }
 
-    public Role(String name) {
-        this.name = name;
-    }
 
     public int getId() {
         return id;
